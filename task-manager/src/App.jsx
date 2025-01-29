@@ -1,14 +1,17 @@
 import { useState } from 'react'
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
+import { signOut } from 'firebase/auth'
+import Navbar from './components/Navbar'
+
 
 function App() {
   
   return (
-    <>
-      <h1 className=''>Hello</h1>
-    </>
+    <Router>
+      <Navbar />
+    </Router>
   )
 }
 
-export default App
+export default App;
