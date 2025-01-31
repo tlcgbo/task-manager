@@ -4,10 +4,10 @@ import Navbar from './Navbar';
 function Signup() {
   return (
     <div className="flex h-screen bg-slate-900 text-white">
-      {/* Sidebar Navbar on the Left */}
+     
       <Navbar />
 
-      {/* Main Content on the Right */}
+   
       <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
         <h2 className="text-3xl font-bold mb-6">Create an Account</h2>
         

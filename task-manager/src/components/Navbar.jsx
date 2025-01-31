@@ -6,12 +6,12 @@ function Navbar() {
   const [active, setActive] = useState("Tasks");
 
   const menuItems = [
-    // { name: "Tasks", icon: Home,},
+
     { name: "Calendar", icon: Calendar },
     { name: "Folders", icon: Folder },
     { name: "Profile", icon: User },
     { name: "Admin", icon: Settings },
-    // {name: "Signup", icon: UserPlus},
+
   ];
 
   return (

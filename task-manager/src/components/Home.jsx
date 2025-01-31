@@ -7,10 +7,10 @@ function Home() {
   return (
     <div className="flex h-screen bg-slate-900 text-white">
       
-      {/* Sidebar Navbar on the Left */}
+   
       <Navbar />
       
-      {/* Main Content on the Right */}
+
       <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
         <h2 className="text-7xl font-bold mb-4">Taskly</h2>
         <Link to="/signup">
