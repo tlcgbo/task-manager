@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Home, BarChart, Calendar, Folder, User, Settings } from "lucide-react";
+import { Home, BarChart, Calendar, Folder, User, Settings, UserPlus } from "lucide-react";
 
 function Navbar() {
   const [active, setActive] = useState("Tasks");
 
   const menuItems = [
-    { name: "Tasks", icon: Home,},
-    { name: "Reporting", icon: BarChart },
+    // { name: "Tasks", icon: Home,},
     { name: "Calendar", icon: Calendar },
     { name: "Folders", icon: Folder },
     { name: "Profile", icon: User },
     { name: "Admin", icon: Settings },
+    // {name: "Signup", icon: UserPlus},
   ];
 
   return (
@@ -23,6 +23,15 @@ function Navbar() {
       </div>
 
       <nav className="flex flex-col gap-2">
+
+      <Link to="/">
+          <div className="flex justif-between p-3 rounded-lg hover:bg-slate-700">
+          <div className="flex items-center gap-3 ">
+              <Home size={20} />
+              <span>Home</span>
+            </div>
+          </div>
+          </Link>
         {menuItems.map((item) => (
           <button
             key={item.name}
@@ -35,9 +44,24 @@ function Navbar() {
               <item.icon size={20} />
               <span>{item.name}</span>
             </div>
-         
+
+           
           </button>
+            
+          
         ))}
+          <Link to="/signup">
+          <div className="flex justif-between p-3 rounded-lg hover:bg-slate-700">
+          <div className="flex items-center gap-3 ">
+              <UserPlus size={20} />
+              <span>Signup</span>
+            </div>
+          </div>
+          </Link>
+
+          
+          
+            
       </nav>
     </aside>
   );
