@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Home, BarChart, Calendar, Folder, User, Settings, UserPlus } from "lucide-react";
+import { Home, BarChart, Calendar, Folder, User, Settings, UserPlus, UserMinus } from "lucide-react";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase.config";
 
-function Navbar() {
+function Navbar({handleSignOut, isAuth}) {
   const [active, setActive] = useState("Tasks");
 
   const menuItems = [
@@ -50,7 +52,11 @@ function Navbar() {
             
           
         ))}
-          <Link to="/signup">
+
+        {
+          !isAuth ? (
+            <>
+              <Link to="/signup">
           <div className="flex justif-between p-3 rounded-lg hover:bg-slate-700">
           <div className="flex items-center gap-3 ">
               <UserPlus size={20} />
@@ -58,6 +64,33 @@ function Navbar() {
             </div>
           </div>
           </Link>
+
+          <Link to="/login">
+          <div className="flex justif-between p-3 rounded-lg hover:bg-slate-700">
+          <div className="flex items-center gap-3 ">
+              <UserPlus size={20} />
+              <span>Login</span>
+            </div>
+          </div>
+          </Link>
+            </>
+          
+          ) : (
+            <>
+              <button onClick={handleSignOut}>
+          <div className="flex justif-between p-3 rounded-lg hover:bg-slate-700">
+          <div className="flex items-center gap-3 ">
+              <UserPlus size={20} />
+              <span>Sign Out</span>
+            </div>
+          </div>
+          </button>
+            </>
+            
+          )
+        }
+          
+
 
           
           
