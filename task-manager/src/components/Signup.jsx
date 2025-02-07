@@ -19,7 +19,6 @@ const Signup = ({ setIsAuth }) => {
   const { username, email, password, confirmPassword } = formData;
   const navigate = useNavigate();
 
-
   if (typeof setIsAuth !== "function") {
     console.error("setIsAuth is not a function! Make sure it's passed as a prop.");
   }
@@ -81,10 +80,11 @@ const Signup = ({ setIsAuth }) => {
 
   return (
     <div className="flex h-screen bg-slate-900 text-white">
-      <Navbar />
       <ToastContainer />  
+
       <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
         <h2 className="text-3xl font-bold mb-6">Create an Account</h2>
+        
         <form onSubmit={handleSubmit} className="w-full max-w-sm">
           <div className="mb-4">
             <label htmlFor="username" className="block text-left mb-2">Username</label>
@@ -137,12 +137,18 @@ const Signup = ({ setIsAuth }) => {
             />
           </div>
 
+          {/* Sign Up Button */}
           <button
             type="submit"
             className="w-full py-2 px-6 bg-blue-500 text-white rounded-md hover:bg-blue-700 transition duration-300"
           >
             Sign Up
           </button>
+
+          {/* Google Sign-In Button - Positioned Right Below */}
+          <div className="mt-4">
+            <GoogleBtn setIsAuth={setIsAuth} />
+          </div>
         </form>
       </div>
     </div>

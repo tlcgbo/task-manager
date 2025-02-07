@@ -1,14 +1,12 @@
 import React from "react";
-import Navbar from "./Navbar";
+
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 function Home() {
   return (
     <div className="flex h-screen bg-slate-900 text-white">
-      
    
-      <Navbar />
       
 
       <div className="flex-1 flex flex-col items-center justify-center text-center px-4">

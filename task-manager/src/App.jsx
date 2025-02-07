@@ -7,10 +7,12 @@ import Home from './components/Home'
 import Signup from './components/Signup'
 import Login from './components/Login'
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
+import { auth } from './firebase.config'
 
 function App() {
 
-  const [isAuth, setIsAuth] = useState(localStorage.getItem("isaUTH"));
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
 
   const signUserOut = () => {
     signOut(auth).then(() => {
@@ -22,11 +24,17 @@ function App() {
   
   return (
     <Router>
+      <div className='flex'>
+      <ToastContainer position="top-right" theme="colored" />
+      <Navbar handleSignOut={signUserOut} isAuth={isAuth} />
+      <div className="ml-64 p-6 w-full">
       <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Home isAuth={isAuth} />} />
+      <Route path="/signup" element={<Signup setIsAuth={setIsAuth} />} />
+      <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
       </Routes>
+      </div>
+      </div>
     </Router>
   )
 }

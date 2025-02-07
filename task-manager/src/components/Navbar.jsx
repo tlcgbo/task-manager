@@ -1,101 +1,69 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Home, BarChart, Calendar, Folder, User, Settings, UserPlus, UserMinus } from "lucide-react";
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase.config";
+import { Home, Calendar, Folder, User, Settings, UserPlus, LogOut } from "lucide-react";
 
-function Navbar({handleSignOut, isAuth}) {
-  const [active, setActive] = useState("Tasks");
+function Navbar({ handleSignOut, isAuth }) {
+  const [active, setActive] = useState("Home");
 
   const menuItems = [
-
-    { name: "Calendar", icon: Calendar },
-    { name: "Folders", icon: Folder },
-    { name: "Profile", icon: User },
-    { name: "Admin", icon: Settings },
-
+    { name: "Home", icon: Home, path: "/" },
+    { name: "Calendar", icon: Calendar, path: "/calendar" },
+    { name: "Folders", icon: Folder, path: "/folders" },
+    { name: "Profile", icon: User, path: "/profile" },
+    { name: "Admin", icon: Settings, path: "/admin" },
   ];
 
   return (
-    <aside className="h-screen w-64 bg-slate-950 text-white shadow-lg p-5 flex flex-col">
-      <div className="flex items-center gap-2 mb-8">
-        
-        <img className="w-10 h-10" src="favicon.ico" alt="" />
+    <aside className="h-screen w-64 bg-slate-950 text-white shadow-lg flex flex-col p-5 fixed">
+      {/* Logo */}
+      <div className="flex items-center gap-2 mb-6">
+        <img className="w-10 h-10" src="favicon.ico" alt="Logo" />
         <h2 className="text-xl font-bold">Taskly</h2>
       </div>
 
-      <nav className="flex flex-col gap-2">
-
-      <Link to="/">
-          <div className="flex justif-between p-3 rounded-lg hover:bg-slate-700">
-          <div className="flex items-center gap-3 ">
-              <Home size={20} />
-              <span>Home</span>
-            </div>
-          </div>
-          </Link>
+      {/* Menu Items */}
+      <nav className="flex flex-col gap-3">
         {menuItems.map((item) => (
-          <button
-            key={item.name}
-            onClick={() => setActive(item.name)}
-            className={`flex items-center justify-between p-3 rounded-lg ${
-              active === item.name ? "bg-slate-800 text-blue-600" : "hover:bg-slate-700"
-            }`}
-          >
-            <div className="flex items-center gap-3">
+          <Link key={item.name} to={item.path} onClick={() => setActive(item.name)}>
+            <div
+              className={`flex items-center gap-3 p-3 rounded-lg ${
+                active === item.name ? "bg-slate-800 text-blue-600" : "hover:bg-slate-700"
+              }`}
+            >
               <item.icon size={20} />
               <span>{item.name}</span>
             </div>
-
-           
-          </button>
-            
-          
+          </Link>
         ))}
-
-        {
-          !isAuth ? (
-            <>
-              <Link to="/signup">
-          <div className="flex justif-between p-3 rounded-lg hover:bg-slate-700">
-          <div className="flex items-center gap-3 ">
-              <UserPlus size={20} />
-              <span>Signup</span>
-            </div>
-          </div>
-          </Link>
-
-          <Link to="/login">
-          <div className="flex justif-between p-3 rounded-lg hover:bg-slate-700">
-          <div className="flex items-center gap-3 ">
-              <UserPlus size={20} />
-              <span>Login</span>
-            </div>
-          </div>
-          </Link>
-            </>
-          
-          ) : (
-            <>
-              <button onClick={handleSignOut}>
-          <div className="flex justif-between p-3 rounded-lg hover:bg-slate-700">
-          <div className="flex items-center gap-3 ">
-              <UserPlus size={20} />
-              <span>Sign Out</span>
-            </div>
-          </div>
-          </button>
-            </>
-            
-          )
-        }
-          
-
-
-          
-          
-            
       </nav>
+
+      {/* Authentication Buttons */}
+      <div className="mt-auto flex flex-col gap-3">
+        {!isAuth ? (
+          <>
+            <Link to="/signup">
+              <button className="flex items-center gap-3 bg-slate-800 p-3 rounded-lg hover:bg-slate-700 w-full">
+                <UserPlus size={20} />
+                Signup
+              </button>
+            </Link>
+            <Link to="/login">
+              <button className="flex items-center gap-3 bg-slate-800 p-3 rounded-lg hover:bg-slate-700 w-full">
+                <UserPlus size={20} />
+                Login
+              </button>
+            </Link>
+          </>
+        ) : (
+          <button
+            onClick={handleSignOut}
+            className="flex items-center gap-3 bg-red-600 p-3 rounded-lg hover:bg-red-500 w-full"
+          >
+            <LogOut size={20} />
+            Sign Out
+          </button>
+        )}
+      </div>
     </aside>
   );
 }
