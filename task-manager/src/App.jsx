@@ -9,6 +9,7 @@ import Login from './components/Login'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify'
 import { auth } from './firebase.config'
+import Tasks from './components/Taks'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
       <Route path="/" element={<Home isAuth={isAuth} />} />
       <Route path="/signup" element={<Signup setIsAuth={setIsAuth} />} />
       <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+      <Route path="/tasks" element={<Tasks setIsAuth={setIsAuth} />} />
       </Routes>
       </div>
       </div>

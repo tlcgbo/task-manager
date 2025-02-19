@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from './Navbar';
 import { auth } from '../firebase.config';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -82,10 +81,10 @@ const Signup = ({ setIsAuth }) => {
     <div className="flex h-screen bg-slate-900 text-white">
       <ToastContainer />  
 
-      <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
-        <h2 className="text-3xl font-bold mb-6">Create an Account</h2>
+      <div className="flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-6">Create an Account</h2>
         
-        <form onSubmit={handleSubmit} className="w-full max-w-sm">
+        <form onSubmit={handleSubmit} className="w-full max-w-xs sm:max-w-sm md:max-w-md">
           <div className="mb-4">
             <label htmlFor="username" className="block text-left mb-2">Username</label>
             <input
@@ -145,7 +144,7 @@ const Signup = ({ setIsAuth }) => {
             Sign Up
           </button>
 
-          {/* Google Sign-In Button - Positioned Right Below */}
+          {/* Google Sign-In Button - Positioned Below */}
           <div className="mt-4">
             <GoogleBtn setIsAuth={setIsAuth} />
           </div>
